@@ -1,16 +1,22 @@
-# TRABALHO 01:  Título do Trabalho
-Trabalho desenvolvido durante a disciplina de BD1
+# TRABALHO 01:  Viagens BSI
+Trabalho desenvolvido durante a disciplina de BD1 e AS (4º período de BSI)
 
 # Sumário
 
 ### 1. COMPONENTES<br>
 Integrantes do grupo<br>
-primeiro_componente_do_grupo:email_primeiro_componente@dominio.com<br>
-segundo_componente_do_grupo:email_segundo_componente@dominio.com<br>
-...<br>
+Beatriz Auer Mariano: biaauer03@gmail.com<br>
+Mateus Maioli Giacomin: matgiacomin@gmail.com<br>
+<br>
 
+### 2. INTRODUÇÃO<br>
+O presente trabalho busca trabalhar diversos conceitos de análise de sistema e desenvolvimento de banco de dados relacional, tendo como base o seguinte cenário:<br>
+<br>
+A empresa “Viagens BSI” é uma agência de viagens 100% virtual que propõe, como modelo de negócios, auxiliar os clientes a montar seu roteiro de viagens de forma personalizada, fácil e acessível. Atualmente, a empresa opera com o mínimo viável para fornecer os seus serviços. Para tanto, utiliza atualmente ferramentas como Whatsapp, documentos de texto e planilhas para se comunicar com o cliente e guardar as informações da empresa e das propostas de viagens. Toda essa situação demanda tempo, que é uma métrica crítica para o negócio, e é incômodo para o agente, além de dificultar o acesso à informação. Por essas razões, a empresa busca um sistema de informação que seja capaz de fornecer para os agentes de viagens melhores ferramentas para a realização de seu trabalho, de modo a trazer velocidade e consistência, além de expandir o banco de conhecimento e fornecedores da empresa (rede de hospedagem, companhias aéreas, agências de aluguel de automóveis, rede turística, recomendações e pacotes fechados anteriormente para propostas similares, etc) e aumentar a segurança e integridade dos dados. Busca-se facilitar o acesso e recuperação de informações da empresa.<br>
+<br>
+[Acesse a documentação de requisitos e documentação de entrevistas com o cliente aqui.](doc/AS2023%20T1%20BA_MM.pdf)
 
-### 2.MINI-MUNDO<br>
+### 3.MINI-MUNDO<br>
 
 Descrever o mini-mundo! (Não deve ser maior do que 30 linhas, se necessário resumir para justar) <br>
 Entrevista com o usuário e identificação dos requisitos.(quando for o caso de sistemas com cliente  real)<br>
