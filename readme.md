@@ -30,6 +30,7 @@ Por fim, a empresa gostaria de ter uma forma eficaz de buscar informações para
 * Quais os hotéis mais escolhidos pelos clientes em cada cidade.
 * Para quais cidades cada agente vende mais pacotes.
 * Quantidade de propostas vendidas e perdidas em um determinado período do tempo. 
+* Faturamento da empresa em um determinado período de tempo.
     
 ### 5.MODELO CONCEITUAL<br>
     A) Utilizar a Notação adequada (Preferencialmente utilizar o BR Modelo 3)
