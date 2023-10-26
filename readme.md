@@ -28,7 +28,7 @@ Por fim, a empresa gostaria de ter uma forma eficaz de buscar informações para
 > A Empresa ViagensBSI precisa inicialmente dos seguintes relatórios:
 * Relatório que mostre os lugares mais visitados pelos clientes, por período e/ou idade dos clientes.
 * Quais os hotéis mais escolhidos pelos clientes em cada cidade.
-* Para quais cidades cada agente vende mais pacotes.
+* Quais os passeios mais escolhidos pelos clientes em cada cidade.
 * Quantidade de propostas vendidas e perdidas em um determinado período do tempo. 
 * Faturamento da empresa em um determinado período de tempo.
     
