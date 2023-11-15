@@ -68,6 +68,24 @@ A partir do modelo lógico, utilizamos a ferramenta de conversão do BRModelo pa
 Para finalizar o modelo físico, utilizamos o [ChatGPT](https://chat.openai.com/) para uniformizar o script (como colocar os tipos de dados em letras garrafais), adicionar constraints mínimos e gerar os constraints a partir de alteração de tabela. Após esse processo, analisamos o resultado e fizemos os últimos ajustes manualmente. Por fim, rodamos o script em um [validador de código sql](https://extendsclass.com/sql-validator.html) para tratar quaisquer error semânticos.<br>
 
 O modelo gerado pelo BRModelo pode ser acessado [aqui](doc/fisico_v1_viagensBSI.sql). A versão final está salva [nesse arquivo de backup](doc/fisico_v3_viagensBSI.sql)
+
+Inputs utilizados no ChatGPT:
+
+    Preencha os constraints de sql corretamente para o modelo físico abaixo, por favor.
+    <inclusão do modelo físico gerado pelo brmodelo>
+<br>
+
+    Agora, altere as instruções de criação de tabelas para incluir as constraints abaixo onde for mais adequado:
+
+    NOT NULL - Ensures that a column cannot have a NULL value
+    UNIQUE - Ensures that all values in a column are different
+    PRIMARY KEY - A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table
+    FOREIGN KEY - Prevents actions that would destroy links between tables
+    CHECK - Ensures that the values in a column satisfies a specific condition
+    DEFAULT - Sets a default value for a column if no value is specified
+    CREATE INDEX - Used to create and retrieve data from the database very quickly
+
+    Também indique que as chaves primárias de cada tabela (id) é do tipo serial.
       
 ### 8	INSERT APLICADO NAS TABELAS DO BANCO DE DADOS<br>
         a) Script das instruções relativas a inclusão de dados 
