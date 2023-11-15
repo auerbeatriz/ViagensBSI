@@ -36,7 +36,7 @@ Por fim, a empresa gostaria de ter uma forma eficaz de buscar informações para
 
 As principais tabelas do sistema são `CLIENTE`, `SOLICITACAO_VIAGEM` e `PACOTE_VIAGEM`. A maior parte das outras tabelas derivam de normalização, ou são partes que compõem essas tabelas principais e as suas relações.<br><br>
 O principal fluxo do sistema consiste no seguinte: um cliente inicia uma solicitação de viagem, podendo, ou não, informar outros clientes acompanhantes. A partir dessa solicitação de viagem, pacotes de viagens são montados pelo agente de viagem. O cliente responsável por essa solicitação escolhe somente um para efetivar a compra. Por fim, é preciso registrar os dados resultantes dessa compra (reserva de hotel, passeios e veículos e passagens aéreas) e os dados de pagamentos.<br><br>
-Abaixo, é apresentado uma imagem do modelo conceitual desenvolvido. Para ver com mais detalhes, carregue [esse arquivo](doc/Conceitual_v4_ViagensBSI.brM3) utilizando o [br modelo](aux/brModelo.jar)
+Abaixo, é apresentado uma imagem do modelo conceitual desenvolvido. Para ver com mais detalhes, carregue [esse arquivo](doc/Conceitual_v5_ViagensBSI.brM3) utilizando o [br modelo](aux/brModelo.jar)
         
 ![Modelo conceitual - Modelo Relacional do banco de dados Viagens BSI](doc/modelo_conceitual_v2.png "Modelo Conceitual")
     
@@ -55,14 +55,19 @@ Abaixo, é apresentado uma imagem do modelo conceitual desenvolvido. Para ver co
 ># Marco de Entrega 01: Do item 1 até o item 5.2 (5 PTS) <br> 
 
 ### 6	MODELO LÓGICO<br>
-        a) inclusão do esquema lógico do banco de dados
-        b) verificação de correspondencia com o modelo conceitual 
-        (não serão aceitos modelos que não estejam em conformidade)
+A partir do modelo conceitual, utilizamos a ferramenta de conversão do BRModelo para gerar o modelo lógico.<br>
+*Nota: Devido ao tamanho do modelo, o BRModelo travou bastante enquanto editávamos o modelo lógico. Por isso, optamos por excluir todas as relações geradas automaticamente e refazer manualmente (acredite, isso levou menos tempo do que continuar com o lag que estava). Por esse motivo, é possível que o modelo .brM3 esteje um pouco quebrado em suas relações. Mas isso não atrapalha e é possível fazer uma excelente conversão para o modelo físico posteriormente.*
+
+Abaixo, é apresentado uma imagem do modelo lógico desenvolvido. Para ver com mais detalhes, carregue [esse arquivo](doc/Logico_v1_ViagensBSI.brM3) utilizando o [br modelo](aux/brModelo.jar)
+        
+![Modelo lógico - Modelo Relacional do banco de dados Viagens BSI](doc/modelo_conceitual_v2.png "Modelo Lógico")
 
 ### 7	MODELO FÍSICO<br>
-        a) inclusão das instruções de criacão das estruturas em SQL/DDL 
-        (criação de tabelas, alterações, etc..) 
+A partir do modelo lógico, utilizamos a ferramenta de conversão do BRModelo para gerar o modelo físico. Conforme descrito no item anterior, o modelo gerado teve de ser modificado para ajustar os relacionamentos entre tabelas.<br>
 
+Para finalizar o modelo físico, utilizamos o [ChatGPT](https://chat.openai.com/) para uniformizar o script (como colocar os tipos de dados em letras garrafais), adicionar constraints mínimos e gerar os constraints a partir de alteração de tabela. Após esse processo, analisamos o resultado e fizemos os últimos ajustes manualmente. Por fim, rodamos o script em um [validador de código sql](https://extendsclass.com/sql-validator.html) para tratar quaisquer error semânticos.<br>
+
+O modelo gerado pelo BRModelo pode ser acessado [aqui](doc/fisico_v1_viagensBSI.sql). A versão final está salva [nesse arquivo de backup](doc/fisico_v3_viagensBSI.sql)
       
 ### 8	INSERT APLICADO NAS TABELAS DO BANCO DE DADOS<br>
         a) Script das instruções relativas a inclusão de dados 
