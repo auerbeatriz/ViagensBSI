@@ -1,7 +1,7 @@
-/* Logico_v1_ViagensBSI: */
+/* Logico_v2_ViagensBSI: */
 
 CREATE TABLE SOLICITACAO_VIAGEM (
-    id integer,
+    id serial UNIQUE,
     nome vachar(150),
     orcamento_minimo decimal,
     data_partida date,
@@ -17,22 +17,23 @@ CREATE TABLE SOLICITACAO_VIAGEM (
 );
 
 CREATE TABLE PACOTE_VIAGEM (
-    id integer,
+    id serial UNIQUE,
     foi_escolhido boolean,
     id_solicitacao_viagem integer
 );
 
 CREATE TABLE EMPRESA (
-    id integer,
+    id serial,
     razao_social varchar(255),
-    nome_fantasia varchar(255),
+    nome_fantasia serial,
     cnpj varchar(20),
     id_ramo_empresa integer,
-    id_endereco integer
+    id_endereco integer,
+    UNIQUE (cnpj, id)
 );
 
 CREATE TABLE RESERVA_QUARTO (
-    id integer,
+    id serial UNIQUE,
     numero_quarto varchar(255),
     data_checkin DATE,
     hora_checkin TIME,
@@ -48,21 +49,23 @@ CREATE TABLE HOSPEDARIA (
     descricao text,
     numero_estrelas integer,
     link_website varchar(255),
-    id integer
+    id serial UNIQUE
 );
 
 CREATE TABLE TIPO_VEICULO (
-    id integer,
-    descricao VARCHAR(200)
+    id serial,
+    descricao VARCHAR(200),
+    UNIQUE (descricao, id)
 );
 
 CREATE TABLE RAMO_EMPRESA (
-    id integer,
-    descricao varchar(255)
+    id serial,
+    descricao varchar(255),
+    UNIQUE (descricao, id)
 );
 
 CREATE TABLE RESERVA_VEICULO (
-    id INTEGER,
+    id serial UNIQUE,
     numero_veiculo VARCHAR(255),
     placa_veiculo vachar(255),
     preco_diaria DECIMAL,
@@ -72,18 +75,19 @@ CREATE TABLE RESERVA_VEICULO (
     data_previsao_entrega DATE,
     hora_previsao_entrega TIME,
     id_pacote_viagem integer,
-    id_tipo_veiculo integer
+    id_tipo_veiculo integer,
+    id_empresa_locadora integer
 );
 
 CREATE TABLE PASSEIO (
-    id integer,
+    id serial UNIQUE,
     nome vachar(255),
     descricao text,
     id_endereco integer
 );
 
 CREATE TABLE ENDERECO (
-    id integer,
+    id serial UNIQUE,
     logradouro varchar(255),
     numero integer,
     complemento varchar(255),
@@ -92,88 +96,82 @@ CREATE TABLE ENDERECO (
 );
 
 CREATE TABLE CIDADE (
-    id integer,
+    id serial UNIQUE,
     nome vachar(150),
     id_estado integer
 );
 
 CREATE TABLE ESTADO (
-    id integer,
+    id serial,
     nome varchar(100),
-    sigla varchar(5)
+    sigla varchar(5),
+    UNIQUE (sigla, id)
 );
 
 CREATE TABLE BENEFICIO_HOSPEDAGEM (
-    id integer,
-    nome varchar(255)
-);
-
-CREATE TABLE CLASSE (
-    id integer,
-    descricao vachar(100)
+    id serial,
+    nome varchar(255),
+    UNIQUE (nome, id)
 );
 
 CREATE TABLE PASSAGEM_AEREA (
-    id integer,
+    id serial,
     numero_voo varchar(255),
     numero_passagem varchar(255),
     numero_assento vachar(255),
     horario_decolagem time,
     horario_pouso time,
-    id_classe integer,
     id_cliente_titular integer,
     id_companhia_aerea integer,
-    id_aeroporto_origem integer,
-    id_aeroporto_destino integer
+    data_delocagem date,
+    data_pouso date,
+    UNIQUE (numero_passagem, id)
 );
 
 CREATE TABLE TIPO_DOCUMENTO (
-    id integer,
-    descricao varchar(20)
+    id serial,
+    descricao varchar(20) UNIQUE
 );
 
 CREATE TABLE TIPO_NECESSIDADE_ESPECIAL (
     descricao vachar(150),
-    id integer
+    id serial,
+    UNIQUE (descricao, id)
 );
 
 CREATE TABLE CLIENTE (
     data_nascimento date,
     nome_social vachar(150),
     nome_registro vachar(150),
-    id integer
+    id serial UNIQUE
 );
 
 CREATE TABLE TIPO_CONTATO (
     descricao varchar(100),
-    id integer
+    id serial,
+    UNIQUE (descricao, id)
 );
 
 CREATE TABLE STATUS (
-    id integer,
-    descricao varchar(40)
+    id serial,
+    descricao varchar(40),
+    UNIQUE (descricao, id)
 );
 
 CREATE TABLE PAGAMENTO (
-    id INTEGER,
+    id serial UNIQUE,
     valor decimal,
     desconto decimal,
     qtd_parcelas integer,
     data_hora_pagamento datetime,
     id_metodo_pagamento integer,
-    id_pacote_viagem integer,
-    id integer,
-    data_hora_fechamento datetime
+    id_pacote_viagem integer
 );
 
 CREATE TABLE METODO_PAGAMENTO (
-    id integer,
-    descricao varchar(70)
-);
-
-CREATE TABLE AEROPORTO (
-    id integer,
-    codigo varchar(3)
+    id serial,
+    descricao varchar(70),
+    UNIQUE (descricao, id)
 );
 
 CREATE TABLE EMPRESA_VEICULO (
@@ -200,7 +198,7 @@ CREATE TABLE PASSAGEM_AEREA_VIAGEM (
 CREATE TABLE DOCUMENTO_CLIENTE (
     id_tipo_documento integer,
     id_cliente integer,
-    numero_documento varchar(20)
+    numero_documento varchar(20) UNIQUE
 );
 
 CREATE TABLE NECESSIDADE_ESPECIAL_CLIENTE (
@@ -224,7 +222,7 @@ CREATE TABLE AGENDA_PASSEIO_VIAGEM (
 CREATE TABLE CONTATO_EMPRESA (
     id_tipo_contato integer,
     id_empresa integer,
-    descricao varchar(150)
+    descricao varchar(150) UNIQUE
 );
 
 CREATE TABLE ACOMPANHANTE_VIAGEM (
@@ -243,10 +241,6 @@ CREATE TABLE PROCURA_VEICULO_VIAGEM (
     id_solicitacao_viagem integer
 );
  
-ALTER TABLE EMPRESA ADD CONSTRAINT FK_EMPRESA_1
-    FOREIGN KEY (nome_fantasia)
-    REFERENCES ??? (???);
- 
-ALTER TABLE ENDERECO ADD CONSTRAINT FK_ENDERECO_1
-    FOREIGN KEY (numero)
+ALTER TABLE RESERVA_VEICULO ADD CONSTRAINT FK_RESERVA_VEICULO_1
+    FOREIGN KEY (id_empresa_locadora???)
     REFERENCES ??? (???);

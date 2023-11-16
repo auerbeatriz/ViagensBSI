@@ -1,11 +1,10 @@
-/* Logico_v1_ViagensBSI: */
+-- Logico_v2_ViagensBSI:
 
 BEGIN;
 
--- Tabela SOLICITACAO_VIAGEM
 CREATE TABLE SOLICITACAO_VIAGEM (
-    id SERIAL NOT NULL UNIQUE,
-    nome VARCHAR(150) NOT NULL,
+    id SERIAL UNIQUE NOT NULL,
+    nome VARCHAR(150),
     orcamento_minimo DECIMAL,
     data_partida DATE,
     data_retorno DATE,
@@ -14,76 +13,72 @@ CREATE TABLE SOLICITACAO_VIAGEM (
     descricao_preferencias_hospedagem TEXT,
     descricao_perfil_grupo TEXT,
     orcamento_maximo DECIMAL,
-    id_cidade_origem INTEGER NOT NULL,
-    id_cidade_destino INTEGER NOT NULL,
-    id_cliente_responsavel INTEGER NOT NULL
+    id_cidade_origem INTEGER,
+    id_cidade_destino INTEGER,
+    id_cliente_responsavel INTEGER
 );
 
--- Tabela PACOTE_VIAGEM
 CREATE TABLE PACOTE_VIAGEM (
-    id SERIAL NOT NULL UNIQUE,
-    foi_escolhido BOOLEAN NOT NULL DEFAULT false,
+    id SERIAL UNIQUE NOT NULL,
+    foi_escolhido BOOLEAN DEFAULT false NOT NULL,
     id_solicitacao_viagem INTEGER NOT NULL
 );
 
--- Tabela EMPRESA
 CREATE TABLE EMPRESA (
     id SERIAL NOT NULL UNIQUE,
     razao_social VARCHAR(255) NOT NULL,
     nome_fantasia VARCHAR(255),
-    cnpj VARCHAR(20) NOT NULL UNIQUE,
+    cnpj VARCHAR(14) NOT NULL UNIQUE,
     id_ramo_empresa INTEGER NOT NULL,
     id_endereco INTEGER
 );
 
--- Tabela RESERVA_QUARTO
 CREATE TABLE RESERVA_QUARTO (
-    id SERIAL NOT NULL UNIQUE,
-    numero_quarto VARCHAR(255) NOT NULL,
+    id SERIAL UNIQUE NOT NULL,
+    numero_quarto VARCHAR(255),
     data_checkin DATE,
     hora_checkin TIME,
-    valor_diaria DECIMAL,
     previsao_dias_hospedagem INTEGER,
     data_previsao_checkout DATE,
     hora_previsao_checkout TIME,
-    id_pacote_viagem INTEGER NOT NULL,
-    id_hospedaria INTEGER NOT NULL
+    valor_diaria DECIMAL,
+    id_pacote_viagem INTEGER,
+    id_hospedaria INTEGER
 );
 
--- Tabela HOSPEDARIA
 CREATE TABLE HOSPEDARIA (
-    id SERIAL NOT NULL UNIQUE,
+    id SERIAL UNIQUE NOT NULL,
     descricao TEXT,
     numero_estrelas INTEGER,
     link_website VARCHAR(255)
 );
 
--- Tabela TIPO_VEICULO
 CREATE TABLE TIPO_VEICULO (
     id SERIAL NOT NULL UNIQUE,
     descricao VARCHAR(200) NOT NULL UNIQUE
 );
 
 CREATE TABLE RAMO_EMPRESA (
-    id integer NOT NULL UNIQUE,
-    descricao varchar(255)
+    id SERIAL NOT NULL UNIQUE,
+    descricao VARCHAR(255) NOT NULL UNIQUE,
+    UNIQUE (descricao, id)
 );
 
--- Tabela RESERVA_VEICULO
 CREATE TABLE RESERVA_VEICULO (
-    id SERIAL NOT NULL UNIQUE,
-    placa_veiculo VARCHAR(255) NOT NULL,
+    id SERIAL UNIQUE NOT NULL,
+    numero_veiculo VARCHAR(255),
+    placa_veiculo VARCHAR(255),
     preco_diaria DECIMAL,
     data_inicio DATE,
     hora_inicio TIME,
     previsao_dias_aluguel INTEGER,
     data_previsao_entrega DATE,
     hora_previsao_entrega TIME,
-    id_pacote_viagem INTEGER NOT NULL,
-    id_tipo_veiculo INTEGER NOT NULL
+    id_pacote_viagem INTEGER,
+    id_tipo_veiculo INTEGER,
+    id_empresa_locadora INTEGER
 );
 
--- Tabela PASSEIO
 CREATE TABLE PASSEIO (
     id SERIAL NOT NULL UNIQUE,
     nome VARCHAR(255) NOT NULL,
@@ -91,159 +86,127 @@ CREATE TABLE PASSEIO (
     id_endereco INTEGER
 );
 
--- Tabela ENDERECO
 CREATE TABLE ENDERECO (
     id SERIAL NOT NULL UNIQUE,
-    logradouro VARCHAR(255) NOT NULL,
+    logradouro VARCHAR(255),
     numero INTEGER,
     complemento VARCHAR(255),
-    cep VARCHAR(8) NOT NULL,
+    cep VARCHAR(8),
     id_cidade INTEGER NOT NULL
 );
 
--- Tabela CIDADE
 CREATE TABLE CIDADE (
     id SERIAL NOT NULL UNIQUE,
     nome VARCHAR(150) NOT NULL,
     id_estado INTEGER NOT NULL
 );
 
--- Tabela ESTADO
 CREATE TABLE ESTADO (
-    id SERIAL NOT NULL UNIQUE,
-    nome VARCHAR(100) NOT NULL,
-    sigla VARCHAR(5) NOT NULL
+    id SERIAL UNIQUE NOT NULL,
+    nome VARCHAR(100),
+    sigla VARCHAR(5) UNIQUE
 );
 
--- Tabela BENEFICIO_HOSPEDAGEM
 CREATE TABLE BENEFICIO_HOSPEDAGEM (
     id SERIAL NOT NULL UNIQUE,
-    nome VARCHAR(255) NOT NULL UNIQUE
+    nome VARCHAR(255) NOT NULL UNIQUE,
+    UNIQUE (nome, id)
 );
 
--- Tabela CLASSE
-CREATE TABLE CLASSE (
-    id SERIAL NOT NULL UNIQUE,
-    descricao VARCHAR(100) NOT NULL UNIQUE
-);
-
--- Tabela PASSAGEM_AEREA
 CREATE TABLE PASSAGEM_AEREA (
     id SERIAL NOT NULL UNIQUE,
-    numero_voo VARCHAR(255) NOT NULL,
-    numero_passagem VARCHAR(255) NOT NULL,
+    numero_voo VARCHAR(255),
+    numero_passagem VARCHAR(255) UNIQUE,
     numero_assento VARCHAR(255),
+    data_decolagem DATE,
     horario_decolagem TIME,
+    data_pouso DATE,
     horario_pouso TIME,
-    id_classe INTEGER,
-    id_cliente_titular INTEGER NOT NULL,
-    id_companhia_aerea INTEGER NOT NULL,
-    id_aeroporto_origem INTEGER NOT NULL,
-    id_aeroporto_destino INTEGER NOT NULL
+    id_cliente_titular INTEGER,
+    id_companhia_aerea INTEGER
 );
 
--- Tabela TIPO_DOCUMENTO
 CREATE TABLE TIPO_DOCUMENTO (
     id SERIAL NOT NULL UNIQUE,
     descricao VARCHAR(20) NOT NULL UNIQUE
 );
 
--- Tabela TIPO_NECESSIDADE_ESPECIAL
 CREATE TABLE TIPO_NECESSIDADE_ESPECIAL (
     id SERIAL NOT NULL UNIQUE,
     descricao VARCHAR(150) NOT NULL UNIQUE
 );
 
--- Tabela CLIENTE
 CREATE TABLE CLIENTE (
     id SERIAL NOT NULL UNIQUE,
     data_nascimento DATE,
     nome_social VARCHAR(150) NOT NULL,
-    nome_registro VARCHAR(150)
+    nome_registro VARCHAR(150) 
 );
 
--- Tabela TIPO_CONTATO
 CREATE TABLE TIPO_CONTATO (
     id SERIAL NOT NULL UNIQUE,
     descricao VARCHAR(100) NOT NULL UNIQUE
 );
 
--- Tabela STATUS
 CREATE TABLE STATUS (
     id SERIAL NOT NULL UNIQUE,
-    descricao VARCHAR(40) NOT NULL UNIQUE
+    descricao VARCHAR(40) NOT NULL UNIQUE,
+    UNIQUE (descricao, id)
 );
 
--- Tabela PAGAMENTO
 CREATE TABLE PAGAMENTO (
     id SERIAL NOT NULL UNIQUE,
     valor DECIMAL NOT NULL,
     desconto DECIMAL,
-    qtd_parcelas INTEGER,
+    qtd_parcelas INTEGER DEFAULT 1,
     data_hora_pagamento TIMESTAMP,
     id_metodo_pagamento INTEGER NOT NULL,
-    id_pacote_viagem INTEGER NOT NULL,
-    data_hora_fechamento TIMESTAMP
+    id_pacote_viagem INTEGER NOT NULL
 );
 
--- Tabela METODO_PAGAMENTO
 CREATE TABLE METODO_PAGAMENTO (
     id SERIAL NOT NULL UNIQUE,
     descricao VARCHAR(70) NOT NULL UNIQUE
 );
 
--- Tabela AEROPORTO
-CREATE TABLE AEROPORTO (
-    id SERIAL NOT NULL UNIQUE,
-    codigo VARCHAR(3) NOT NULL UNIQUE
-);
-
--- Tabela EMPRESA_VEICULO
 CREATE TABLE EMPRESA_VEICULO (
     id_empresa INTEGER NOT NULL,
     id_tipo_veiculo INTEGER NOT NULL
 );
 
--- Tabela BENEFICIO_HOSPEDARIA
 CREATE TABLE BENEFICIO_HOSPEDARIA (
     id_hospedaria INTEGER NOT NULL,
     id_beneficio_hospedagem INTEGER NOT NULL
 );
 
--- Tabela EMPRESA_PASSEIO
 CREATE TABLE EMPRESA_PASSEIO (
     id_passeio INTEGER NOT NULL,
     id_empresa INTEGER NOT NULL,
     preco DECIMAL
 );
 
--- Tabela PASSAGEM_AEREA_VIAGEM
 CREATE TABLE PASSAGEM_AEREA_VIAGEM (
     id_pacote_viagem INTEGER NOT NULL,
     id_passagem_aerea INTEGER NOT NULL
 );
 
--- Tabela DOCUMENTO_CLIENTE
 CREATE TABLE DOCUMENTO_CLIENTE (
     id_tipo_documento INTEGER NOT NULL,
     id_cliente INTEGER NOT NULL,
     numero_documento VARCHAR(20) NOT NULL UNIQUE
 );
 
--- Tabela NECESSIDADE_ESPECIAL_CLIENTE
 CREATE TABLE NECESSIDADE_ESPECIAL_CLIENTE (
     id_cliente INTEGER NOT NULL,
     id_necessidade_especial INTEGER NOT NULL
 );
 
--- Tabela CONTATO_CLIENTE_RESPONSAVEL
 CREATE TABLE CONTATO_CLIENTE_RESPONSAVEL (
     id_tipo_contato INTEGER NOT NULL,
     id_cliente INTEGER NOT NULL,
     descricao VARCHAR(100) NOT NULL
 );
 
--- Tabela AGENDA_PASSEIO_VIAGEM
 CREATE TABLE AGENDA_PASSEIO_VIAGEM (
     id_pacote_viagem INTEGER NOT NULL,
     id_passeio INTEGER NOT NULL,
@@ -251,24 +214,26 @@ CREATE TABLE AGENDA_PASSEIO_VIAGEM (
     data DATE
 );
 
--- Tabela CONTATO_EMPRESA
 CREATE TABLE CONTATO_EMPRESA (
     id_tipo_contato INTEGER NOT NULL,
     id_empresa INTEGER NOT NULL,
-    descricao VARCHAR(150) NOT NULL
+    descricao VARCHAR(150) NOT NULL UNIQUE
 );
 
--- Tabela ACOMPANHANTE_VIAGEM
 CREATE TABLE ACOMPANHANTE_VIAGEM (
     id_cliente INTEGER NOT NULL,
     id_solicitacao_viagem INTEGER NOT NULL
 );
 
--- Tabela SITUACAO_ATENDIMENTO
 CREATE TABLE SITUACAO_ATENDIMENTO (
     id_solicitacao_viagem INTEGER NOT NULL,
     id_status INTEGER NOT NULL,
-    data_hora_mudanca TIMESTAMP
+    data_hora_mudanca TIMESTAMP NOT NULL
+);
+
+CREATE TABLE PROCURA_VEICULO_VIAGEM (
+    id_tipo_veiculo INTEGER NOT NULL,
+    id_solicitacao_viagem INTEGER NOT NULL
 );
 
 -- Adicionando as constraints para a tabela SOLICITACAO_VIAGEM
@@ -343,6 +308,10 @@ ALTER TABLE RESERVA_VEICULO ADD CONSTRAINT FK_RESERVA_VEICULO_TIPO_VEICULO
     FOREIGN KEY (id_tipo_veiculo)
     REFERENCES TIPO_VEICULO (id);
 
+ALTER TABLE RESERVA_VEICULO ADD CONSTRAINT FK_RESERVA_VEICULO_EMPRESA
+    FOREIGN KEY (id_empresa_locadora)
+    REFERENCES EMPRESA (id);
+
 -- Adicionando as constraints para a tabela PASSEIO
 ALTER TABLE PASSEIO ADD CONSTRAINT PK_PASSEIO
     PRIMARY KEY (id);
@@ -375,17 +344,9 @@ ALTER TABLE ESTADO ADD CONSTRAINT PK_ESTADO
 ALTER TABLE BENEFICIO_HOSPEDAGEM ADD CONSTRAINT PK_BENEFICIO_HOSPEDAGEM
     PRIMARY KEY (id);
 
--- Adicionando as constraints para a tabela CLASSE
-ALTER TABLE CLASSE ADD CONSTRAINT PK_CLASSE
-    PRIMARY KEY (id);
-
 -- Adicionando as constraints para a tabela PASSAGEM_AEREA
 ALTER TABLE PASSAGEM_AEREA ADD CONSTRAINT PK_PASSAGEM_AEREA
     PRIMARY KEY (id);
-
-ALTER TABLE PASSAGEM_AEREA ADD CONSTRAINT FK_PASSAGEM_AEREA_CLASSE
-    FOREIGN KEY (id_classe)
-    REFERENCES CLASSE (id);
 
 ALTER TABLE PASSAGEM_AEREA ADD CONSTRAINT FK_PASSAGEM_AEREA_CLIENTE_TITULAR
     FOREIGN KEY (id_cliente_titular)
@@ -395,14 +356,6 @@ ALTER TABLE PASSAGEM_AEREA ADD CONSTRAINT FK_PASSAGEM_AEREA_COMPANHIA_AEREA
     FOREIGN KEY (id_companhia_aerea)
     REFERENCES EMPRESA (id);
 
-ALTER TABLE PASSAGEM_AEREA ADD CONSTRAINT FK_PASSAGEM_AEREA_AEROPORTO_ORIGEM
-    FOREIGN KEY (id_aeroporto_origem)
-    REFERENCES AEROPORTO (id);
-
-ALTER TABLE PASSAGEM_AEREA ADD CONSTRAINT FK_PASSAGEM_AEREA_AEROPORTO_DESTINO
-    FOREIGN KEY (id_aeroporto_destino)
-    REFERENCES AEROPORTO (id);
-
 -- Adicionando as constraints para a tabela TIPO_DOCUMENTO
 ALTER TABLE TIPO_DOCUMENTO ADD CONSTRAINT PK_TIPO_DOCUMENTO
     PRIMARY KEY (id);
@@ -410,7 +363,6 @@ ALTER TABLE TIPO_DOCUMENTO ADD CONSTRAINT PK_TIPO_DOCUMENTO
 -- Adicionando as constraints para a tabela TIPO_NECESSIDADE_ESPECIAL
 ALTER TABLE TIPO_NECESSIDADE_ESPECIAL ADD CONSTRAINT PK_TIPO_NECESSIDADE_ESPECIAL
     PRIMARY KEY (id);
-
 
 -- Adicionando as constraints para a tabela CLIENTE
 ALTER TABLE CLIENTE ADD CONSTRAINT PK_CLIENTE
@@ -438,10 +390,6 @@ ALTER TABLE PAGAMENTO ADD CONSTRAINT FK_PAGAMENTO_PACOTE_VIAGEM
 
 -- Adicionando as constraints para a tabela METODO_PAGAMENTO
 ALTER TABLE METODO_PAGAMENTO ADD CONSTRAINT PK_METODO_PAGAMENTO
-    PRIMARY KEY (id);
-    
--- Adicionando as constraints para a tabela AEROPORTO
-ALTER TABLE AEROPORTO ADD CONSTRAINT PK_AEROPORTO
     PRIMARY KEY (id);
     
 -- Adicionando as constraints para a tabela EMPRESA_VEICULO
@@ -542,12 +490,6 @@ ALTER TABLE SITUACAO_ATENDIMENTO ADD CONSTRAINT FK_SITUACAO_ATENDIMENTO_SOLICITA
 ALTER TABLE SITUACAO_ATENDIMENTO ADD CONSTRAINT FK_SITUACAO_ATENDIMENTO_STATUS
     FOREIGN KEY (id_status)
     REFERENCES STATUS (id);
-
--- Tabela PROCURA_VEICULO_VIAGEM
-CREATE TABLE PROCURA_VEICULO_VIAGEM (
-    id_tipo_veiculo INTEGER NOT NULL,
-    id_solicitacao_viagem INTEGER NOT NULL
-);
 
 -- Adicionando as constraints para a tabela PROCURA_VEICULO_VIAGEM
 ALTER TABLE PROCURA_VEICULO_VIAGEM ADD CONSTRAINT FK_PROCURA_VEICULO_VIAGEM_TIPO_VEICULO
