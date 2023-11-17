@@ -38,8 +38,7 @@ As principais tabelas do sistema são `CLIENTE`, `SOLICITACAO_VIAGEM` e `PACOTE_
 O principal fluxo do sistema consiste no seguinte: um cliente inicia uma solicitação de viagem, podendo, ou não, informar outros clientes acompanhantes. A partir dessa solicitação de viagem, pacotes de viagens são montados pelo agente de viagem. O cliente responsável por essa solicitação escolhe somente um para efetivar a compra. Por fim, é preciso registrar os dados resultantes dessa compra (reserva de hotel, passeios e veículos e passagens aéreas) e os dados de pagamentos.<br><br>
 Abaixo, é apresentado uma imagem do modelo conceitual desenvolvido. Para ver com mais detalhes, carregue [esse arquivo](doc/Conceitual_v6_ViagensBSI.brM3) utilizando o [br modelo](aux/brModelo.jar)
         
-![Modelo conceitual - Modelo Relacional do banco de dados Viagens BSI](doc/modelo_conceitual_v2.png "Modelo Conceitual")
-    
+![Modelo conceitual - Modelo Relacional do banco de dados Viagens BSI](img/conceitual.png "Modelo Conceitual")
     
 #### 5.1 Validação do Modelo Conceitual
     [Grupo01]: [Lara, Rodolfo Oliveira e Erick Gama]
@@ -49,15 +48,13 @@ Abaixo, é apresentado uma imagem do modelo conceitual desenvolvido. Para ver co
 
 A descrição dos dados pode ser encontrada [nesse documento](doc/descricao_dados.pdf).
 
-># Marco de Entrega 01: Do item 1 até o item 5.2 (5 PTS) <br> 
-
 ### 6	MODELO LÓGICO<br>
 A partir do modelo conceitual, utilizamos a ferramenta de conversão do BRModelo para gerar o modelo lógico.<br>
 *Nota: Devido ao tamanho do modelo, o BRModelo travou bastante enquanto editávamos o modelo lógico. Por isso, optamos por excluir todas as relações geradas automaticamente e refazer manualmente (acredite, isso levou menos tempo do que continuar com o lag que estava). Por esse motivo, é possível que o modelo .brM3 esteje um pouco quebrado em suas relações. Mas isso não atrapalha e é possível fazer uma excelente conversão para o modelo físico posteriormente.*
 
 Abaixo, é apresentado uma imagem do modelo lógico desenvolvido. Para ver com mais detalhes, carregue [esse arquivo](doc/Logico_v2_ViagensBSI.brM3) utilizando o [br modelo](aux/brModelo.jar)
         
-![Modelo lógico - Modelo Relacional do banco de dados Viagens BSI](doc/modelo_conceitual_v2.png "Modelo Lógico")
+![Modelo lógico - Modelo Relacional do banco de dados Viagens BSI](img/logico.png "Modelo Lógico")
 
 ### 7	MODELO FÍSICO<br>
 A partir do modelo lógico, utilizamos a ferramenta de conversão do BRModelo para gerar o modelo físico. Conforme descrito no item anterior, o modelo gerado teve de ser modificado para ajustar os relacionamentos entre tabelas.<br>
