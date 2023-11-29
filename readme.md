@@ -48,6 +48,15 @@ Abaixo, é apresentado uma imagem do modelo conceitual desenvolvido. Para ver co
 
 A descrição dos dados pode ser encontrada [nesse documento](doc/descricao_dados.pdf).
 
+#### 5.3 Melhorias futuras
+
+Percebemos que algumas melhorias precisam ser feitas na versão futura do banco. A priori, são elas: <br>
+* Controle interno da empresa, principalmente dos agentes de viagem
+* Gerenciamento de quais viajantes irão em cada passeio
+* Gerenciamento de ingressos de passeios pagos para quem vai no passeio, inclusive a cobrança dos passeios
+* Gerenciamento de pagamentos, principalmente quanto ao valor do pacote de viagem (taxas, descontos, valor total)
+
+
 ### 6	MODELO LÓGICO<br>
 A partir do modelo conceitual, utilizamos a ferramenta de conversão do BRModelo para gerar o modelo lógico.<br>
 *Nota: Devido ao tamanho do modelo, o BRModelo travou bastante enquanto editávamos o modelo lógico. Por isso, optamos por excluir todas as relações geradas automaticamente e refazer manualmente (acredite, isso levou menos tempo do que continuar com o lag que estava). Por esse motivo, é possível que o modelo .brM3 esteje um pouco quebrado em suas relações. Mas isso não atrapalha e é possível fazer uma excelente conversão para o modelo físico posteriormente.*
@@ -82,12 +91,17 @@ Inputs utilizados no ChatGPT:
     Também indique que as chaves primárias de cada tabela (id) é do tipo serial.
       
 ### 8	INSERT APLICADO NAS TABELAS DO BANCO DE DADOS<br>
-        a) Script das instruções relativas a inclusão de dados 
-	Requisito mínimo: (Script dev conter: Drop para exclusão de tabelas + create definição de para tabelas e estruturas de dados + insert para dados a serem inseridos)
-        OBS
-	1) Criar um novo banco de dados para testar a restauracao (em caso de falha na restauração o grupo não pontuará neste quesito)
-        2) script deve ser incluso no template em um arquivo no formato .SQL
 
+O arquivo [inserts.sql](doc/inserts.sql) possui todos os dados de mock do banco de dados. Ele tem mais de mil linhas. Devido ao tamanho do banco, reduzimos a quantidade de dados nas tabelas, para otimizar o tempo (fazer as inserções levou duas semanas). E, claro, usamos bastante o ChatGPT aqui também para evitar trabalho manual: inserir dados repetitivos e inventados, como para passagens e reservas, e adaptar dados falsos obtidos através de geradores online para a estrutura da tabela. Além disso, também usamos alguns scripts em python para inserir dados das tabelas associativas. <br>
+
+Exemplo do código usado para inserir os benefícios de uma hospedaria:
+```
+for i in range(8, 30):
+	for j in range(1, 6):
+		randomNumber = random.randrange(1, 21)
+		print(f"({i}, {randomNumber}),")
+```
+Por fim, criamos um [arquivo de backup](doc/backup.sql) de todo o banco. 
 
 ### 9	TABELAS E PRINCIPAIS CONSULTAS<br>
     OBS: Usa template da disciplina disponibilizado no Colab.<br>
