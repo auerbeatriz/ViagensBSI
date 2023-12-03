@@ -107,6 +107,11 @@ Por fim, criamos um [arquivo de backup](doc/backup.sql) de todo o banco.
 
 [Acesse o colab aqui](https://colab.research.google.com/drive/1yDsro_31TCfamYGXOm6NuCK0rTMcajjc?usp=sharing)
 
-### 10 Extra
+### 10
+
+Veja os [slides da apresentação](doc/Apresentacao%20-%20Viagens%20BSI.pdf)
+Veja o [vídeo de apresentação]()
+
+### 11 Extra
 
 [Relatório das sprints](doc/Relatórios%20das%20sprints.pdf)
