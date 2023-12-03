@@ -27,7 +27,7 @@ A empresa “Viagens BSI” é uma agência de viagens 100% virtual que propõe,
     
 A Empresa ViagensBSI precisa inicialmente dos seguintes relatórios:
 > * Relatório que mostre os lugares mais visitados pelos clientes, por período e/ou idade dos clientes.
-> * Quais os hotéis mais escolhidos pelos clientes em cada cidade.
+> * Quais os hotéis mais escolhidos pelos clientes no Brasil.
 > * Quais os passeios mais escolhidos pelos clientes em cada cidade.
 > * Quantidade de propostas vendidas e perdidas em um determinado período do tempo. 
 > * Faturamento da empresa em um determinado período de tempo.
