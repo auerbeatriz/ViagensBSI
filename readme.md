@@ -109,7 +109,7 @@ Por fim, criamos um [arquivo de backup](doc/backup.sql) de todo o banco.
 
 ### 10
 
-Veja os [slides da apresentação](doc/Apresentacao%20-%20Viagens%20BSI.pdf)
+Veja os [slides da apresentação](doc/Apresentacao%20-%20Viagens%20BSI.pdf) <br>
 Veja o [vídeo de apresentação]()
 
 ### 11 Extra
