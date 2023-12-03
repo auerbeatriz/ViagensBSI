@@ -106,3 +106,7 @@ Por fim, criamos um [arquivo de backup](doc/backup.sql) de todo o banco.
 ### 9	TABELAS E PRINCIPAIS CONSULTAS<br>
 
 [Acesse o colab aqui](https://colab.research.google.com/drive/1yDsro_31TCfamYGXOm6NuCK0rTMcajjc?usp=sharing)
+
+### 10 Extra
+
+[Relatório das sprints](doc/Relatórios%20das%20sprints.pdf)
